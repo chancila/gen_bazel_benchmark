@@ -449,11 +449,7 @@ async fn main() -> anyhow::Result<()> {
         })
         .await;
 
-    std::fs::copy(
-        std::env::home_dir().unwrap().join("GEN_WORKSPACE"),
-        args.output.join("WORKSPACE"),
-    )
-    .unwrap();
+    std::fs::copy(Path::new("GEN_WORKSPACE"), args.output.join("WORKSPACE")).unwrap();
 
     let mut f = std::fs::File::create(args.output.join(".bazelversion")).unwrap();
     writeln!(f, "5.0.0.7").unwrap();
